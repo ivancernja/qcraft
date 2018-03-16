@@ -7,16 +7,54 @@
   <title>qCraft</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
-
-{% includeCssFile "public/css/main.css" %}
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  {% includeCssFile "public/css/main.css" %}
 
 </head>
 
 <body>
 
-<div class="header-image">
-Lorem ipsum
-</div>
+
+<!-- Main menu navigation -->
+{% set entries = craft.entries.section('pages') %}
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle"> <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+
+      </button> <a href="index.html" class="navbar-brand" style="color:#000000">Logo</a>
+
+    </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        {% nav entry in entries %}
+          <li>
+            <a href="{{ entry.url }}">{{ entry.title }}</a>
+            {% ifchildren %}
+                <ul>
+                    {% children %}
+                </ul>
+            {% endifchildren %}
+        </li>
+            {% endnav %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a target="_blank" href="https://instagram.com/paulopinzonart/" style="color:#125688;"><i class="fa fa-search fa-1x"></i></a>
+        </li>
+        <li><a target="_blank" href="https://twitter.com/PauloPinzonArt" style="color:#00c7f4;"><i class="fa fa-user fa-1x"></i></a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- /Main menu navigation -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 </html>
